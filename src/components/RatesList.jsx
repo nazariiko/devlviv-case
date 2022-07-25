@@ -7,25 +7,11 @@ import Grid from '@mui/material/Grid';
 import RatesListItem from '../components/RatesListItem';
 
 import { fetchExchangeRates } from '../api/exchangeApi';
+import { useAsync } from '../hooks/useAsync';
 
 const RatesList = () => {
   const baseCurrency = useSelector((state) => state.baseCurrency.baseCurrency)
-  const [rates, setRates] = React.useState([])
-  const [loadingState, setLoadingState] = React.useState(null)
-
-  React.useEffect(() => {
-    if (!baseCurrency) return
-    setLoadingState('loading')
-    fetchExchangeRates(baseCurrency)
-    .then(result => {
-      setRates(result)
-      setLoadingState('success')
-    })
-    .catch(() => {
-      setLoadingState('error')
-      setRates([])
-    })
-  }, [baseCurrency])
+  const { status, data, error } = useAsync(fetchExchangeRates, [baseCurrency], [baseCurrency])
 
   return (
     <Box
@@ -38,18 +24,18 @@ const RatesList = () => {
       }}
     >
       {
-        loadingState == 'loading' &&
+        status == 'pending' &&
         <CircularProgress />
       }
       {
-        loadingState == 'error' &&
-        <Typography align='center'>api error :(</Typography>
+        status == 'error' &&
+        <Typography align='center'>api error :( {error}</Typography>
       }
       {
-        (loadingState == 'success' && rates.length) &&
-        <Grid container spacing={1}>
+        (status == 'success' && data.length) &&
+        <Grid container spacing={1} sx={{ paddingBottom: '20px' }}>
           {
-            rates.map(rate => <RatesListItem baseCurrency={baseCurrency} curr={rate.curr} price={rate.price} key={rate.curr} />)
+            data.map(rate => <RatesListItem baseCurrency={baseCurrency} curr={rate.curr} price={rate.price} key={rate.curr} />)
           }
         </Grid>
       }

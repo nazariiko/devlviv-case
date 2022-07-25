@@ -1,13 +1,10 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-import Navigation from '../layout/Navigation';
-import BaseCurrencySelect from './BaseCurrencySelect';
+import Navigation from './Navigation';
+import BaseCurrencySelect from '../components/BaseCurrencySelect';
 
 const Header = () => {
-  React.useEffect(() => {
-    console.log('header render');
-  })
   
   return (
     <Box 

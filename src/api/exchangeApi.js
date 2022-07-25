@@ -1,7 +1,7 @@
 export const fetchExchangeRates = (baseCurrency) => {
   return new Promise((resolve, reject) => {
     let myHeaders = new Headers();
-    myHeaders.append("apikey", "cMj2K0PqEDiFgvpd4XcQr4Rg3oaWGCoM");
+    myHeaders.append("apikey", "SSVB8E7CCtym2d52C2oXzRcOIsNt3Cec");
   
     let requestOptions = {
       method: 'GET',
@@ -29,7 +29,7 @@ export const fetchExchangeRates = (baseCurrency) => {
 export const convertCurrency = (from, to, amount) => {
   return new Promise((resolve, reject) => {
     let myHeaders = new Headers();
-    myHeaders.append("apikey", "cMj2K0PqEDiFgvpd4XcQr4Rg3oaWGCoM");
+    myHeaders.append("apikey", "SSVB8E7CCtym2d52C2oXzRcOIsNt3Cec");
   
     let requestOptions = {
       method: 'GET',

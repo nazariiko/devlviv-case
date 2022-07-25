@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import { Box } from '@mui/material';
 
 import { setBaseCurrency } from './redux/baseCurrency/baseCurrencySlice';
-import Header from './components/Header';
+import Header from './layout/Header';
 import './style.scss';
 import { getUserCountryCurrency } from './api/exchangeApi';
 
